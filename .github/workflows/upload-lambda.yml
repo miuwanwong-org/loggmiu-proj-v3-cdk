@@ -19,5 +19,5 @@ jobs:
       - name: Build and deploy
         run: |
           cdk synth
-          aws cloudformation package --template-file cdk.out/LambdaStack.template.json --s3-bucket MyFirstBucket --s3-prefix lambda --output-template-file cdk.out/LambdaStack.packaged.yml
-          aws cloudformation deploy --template-file cdk.out/LambdaStack.packaged.yml --stack-name MyLambdaStack --capabilities CAPABILITY_IAM
+          cdk bootstrap
+          cdk deploy
