@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      - npm install
+      - npm install -g aws-cdk
+  build:
+    commands:
+      - cdk synth
+      - aws cloudformation package --template-file cdk.out/LambdaStack.template.json --s3-bucket MyFirstBucket --s3-prefix lambda --output-template-file cdk.out/LambdaStack.packaged.yml
+
+artifacts:
+  files:
+    - cdk.out/LambdaStack.packaged.yml
